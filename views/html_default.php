@@ -35,7 +35,7 @@ class Html_default {
 
     public static function OPENCONTAINER() {
         $html = "
-        <div class='container-fluid theme-showcase' role='main'>
+        <div class='container-fluid h-100 theme-showcase' role='main'>
         ";
         echo $html;
 
