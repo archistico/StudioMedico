@@ -1,6 +1,8 @@
-# Route
+# Appuntamenti e Todo studio medico
 
-Implementazione gestione route con coda in mysql.
+Gestionale per studio medico:
+- Passaggi di consegne
+- Fissare appuntamenti
 
 ## Install
 
