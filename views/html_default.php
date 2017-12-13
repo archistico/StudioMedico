@@ -35,7 +35,7 @@ class Html_default {
 
     public static function OPENCONTAINER() {
         $html = "
-        <div class='container-fluid h-100 theme-showcase' role='main'>
+        <main role='main' class='container-fluid theme-showcase'>
         ";
         echo $html;
 
@@ -44,7 +44,7 @@ class Html_default {
 
     public static function CLOSECONTAINER() {
         $html = "
-        </div> <!-- /container -->
+        </main> <!-- /container -->
         ";
         echo $html;
     }
