@@ -6,6 +6,7 @@ class Home extends Controller {
     }
 
     function get() {
+        $todos = TodoEntity::Lista();
         include("views/home.php");
     }
 }

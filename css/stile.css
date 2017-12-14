@@ -15,6 +15,10 @@ body {
   margin-left: 10px;
 }
 
+.background-form {
+  background-color: orange;
+}
+
 .rosso {
   color: red;
 }
@@ -25,10 +29,6 @@ body {
 
 .arancione {
   color: orange;
-}
-
-.barralaterale {
-  background-color: lightgray;
 }
 
 .jumbotron {
@@ -48,7 +48,7 @@ body {
   line-height: 80%;
 }
 
-.tdicon{ width: 32px !important; }
+.tdicon{ width: 8px !important; }
 
 
 .notice {
@@ -92,3 +92,36 @@ body {
 .notice-danger>strong {
   color: #d73814;
 }
+
+.sidebar{
+  padding-right: 20px;
+  padding-top: 20px;
+  min-height: calc(100vh - 230px);
+
+  /* border-left: 6px solid #45ABCD; */
+}
+
+.agenda {  }
+
+/* Dates */
+.agenda .agenda-date { width: 170px; }
+.agenda .agenda-date .dayofmonth {
+  width: 52px;
+  font-size: 48px;
+  line-height: 44px;
+  float: left;
+  text-align: right;
+  margin-right: 10px; 
+}
+.agenda .agenda-date .shortdate {
+  font-size: 0.75em; 
+}
+
+
+/* Times */
+.agenda .agenda-time { width: 140px; } 
+
+
+/* Events */
+.agenda .agenda-events {  } 
+.agenda .agenda-events .agenda-event {  } 
