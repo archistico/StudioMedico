@@ -6,11 +6,11 @@
  */
 
 class TodoEntity {
-    public static function Add($todo) {
+    public static function Add($tabella, $todo) {
         $result = false;
         try {
 
-            $query = MySQL::getInstance()->prepare("INSERT INTO todo (descrizione) VALUES (:descrizione)");
+            $query = MySQL::getInstance()->prepare("INSERT INTO $tabella (descrizione) VALUES (:descrizione)");
             $query->bindValue(':descrizione', Utilita::HTML2DB($todo), PDO::PARAM_STR);
             $result = $query->execute();
 
@@ -21,10 +21,10 @@ class TodoEntity {
         return $result;
     }
 
-    public static function Lista() {
+    public static function Lista($tabella) {
         try {
 
-            $query = MySQL::getInstance()->query("SELECT id, descrizione FROM todo ORDER BY id ASC");
+            $query = MySQL::getInstance()->query("SELECT id, descrizione FROM $tabella ORDER BY id ASC");
             $todos = $query->fetchAll();
 
         }  catch (PDOException $e) {
@@ -34,10 +34,10 @@ class TodoEntity {
         return $todos;
     }
 
-    public static function ID($id) {
+    public static function ID($tabella, $id) {
         try {
 
-            $query = MySQL::getInstance()->prepare("SELECT id, descrizione FROM todo WHERE id = :id");
+            $query = MySQL::getInstance()->prepare("SELECT id, descrizione FROM $tabella WHERE id = :id");
             $query->bindValue(':id', $id, PDO::PARAM_STR);
             $query->execute();
             $todo = $query->fetch(PDO::FETCH_ASSOC);
@@ -49,11 +49,11 @@ class TodoEntity {
         return $todo;
     }
 
-    public static function DELETE($id) {
+    public static function DELETE($tabella, $id) {
         $result = false;
         try {
 
-            $query = MySQL::getInstance()->prepare("DELETE FROM todo WHERE id = :id");
+            $query = MySQL::getInstance()->prepare("DELETE FROM $tabella WHERE id = :id");
             $query->bindValue(':id', $id, PDO::PARAM_STR);
             $result = $query->execute();
 
@@ -64,11 +64,11 @@ class TodoEntity {
         return $result;
     }
 
-    public static function MODIFY($id,$todo) {
+    public static function MODIFY($tabella, $id,$todo) {
         $result = false;
         try {
 
-            $query = MySQL::getInstance()->prepare("UPDATE todo SET descrizione = :descrizione WHERE id = :id");
+            $query = MySQL::getInstance()->prepare("UPDATE $tabella SET descrizione = :descrizione WHERE id = :id");
             $query->bindValue(':id', $id, PDO::PARAM_STR);
             $query->bindValue(':descrizione', Utilita::HTML2DB($todo), PDO::PARAM_STR);
             $result = $query->execute();

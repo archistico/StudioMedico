@@ -6,7 +6,8 @@ class Home extends Controller {
     }
 
     function get() {
-        $todos = TodoEntity::Lista();
+        $todosDottoressa = TodoEntity::Lista('todo_dottoressa');
+        $todosCollaboratrice = TodoEntity::Lista('todo_collaboratrice');
         include("views/home.php");
     }
 }
