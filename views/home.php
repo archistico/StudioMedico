@@ -19,21 +19,55 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
 ?>
 
     <div class="row align-items-start">
-        <div class="col-8">
+        <div class="col-md-8">
             <h1>Appuntamenti</h1>
 
 
             <div class="row align-items-start">
-                <div class="col-12">
-                    <h2>Lista</h2>
+                <div class="col-md-12">
+                    <h2>Aggiungi</h2>
 
-                    <div id="dataappuntamento"></div>
+                    <div class="row align-items-start">
+                        <div class="col-lg-4">
+                            <div id="dataappuntamento"></div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label>Data selezionata</label>
+                                <input type="text" class="form-control input-lg" placeholder="data" name='dataselezionatatesto' id="dataselezionatatesto" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="orarioselezionato">Orario</label>
+                                <select class="form-control" id="orarioselezionato">
+                                    <option>8:00 - 8:15</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Cognome Nome</label>
+                                <input type="text" class="form-control" placeholder="Cognome Nome" name='nome' required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Note</label>
+                                <input type="text" class="form-control" placeholder="Note" name='note'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-start paddingTop20">
+                        <div class="col-lg-12">
+                            <input type="submit" value="Aggiungi" class='btn btn-block btn-info'>
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
-            <div class="row align-items-start">
+            <div class="row align-items-start paddingTop20">
                 <div class="col-12">
+                    <h2>Lista</h2>
                     <div class="agenda">
                         <div class="table-responsive">
                             <table class="table table-condensed table-bordered">
@@ -57,7 +91,6 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                                     </td>
                                     <td class="agenda-events">
                                         <div class="agenda-event">
-                                            <i class="glyphicon glyphicon-repeat text-muted" title="Repeating event"></i> 
                                             Fishing
                                         </div>
                                     </td>
@@ -113,7 +146,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
 
         <!-- ***************** ASIDE ************************* -->
 
-        <aside class="col-4 sidebar">
+        <div class="col-md-4">
 
             <div class="row align-items-start">
                 <div class="col-12">
@@ -200,7 +233,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                 </div>
             </div>
 
-        </aside>
+        </div>
     </div>
 
 <?php
@@ -221,7 +254,7 @@ Html_default::SCRIPT(True, True);
     <script>
 
         $('#dataappuntamento').datepicker({
-            format: "dd/mm/YYYY",
+            format: "dd/mm/yyyy",
             weekStart: 1,
             language: "it",
             todayBtn: "linked",
@@ -229,6 +262,15 @@ Html_default::SCRIPT(True, True);
             todayHighlight: true
         });
 
+        $('#dataappuntamento').on('changeDate', function() {
+            $('#dataselezionatatesto').val(
+                $('#dataappuntamento').datepicker('getFormattedDate')
+            );
+        });
+
+        $('#dataselezionatatesto').val(
+            moment(Date.now()).format('DD/MM/YYYY')
+        );
     </script>
 
 

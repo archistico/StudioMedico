@@ -93,14 +93,6 @@ body {
   color: #d73814;
 }
 
-.sidebar{
-  padding-right: 20px;
-  padding-top: 20px;
-  min-height: calc(100vh - 230px);
-
-  /* border-left: 6px solid #45ABCD; */
-}
-
 .agenda {  }
 
 /* Dates */
