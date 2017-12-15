@@ -200,15 +200,10 @@ class Routes {
         $this->Add(new Route("/", "Home", ["Amministratore", "Normale", "Visitatore"], "Home", true));
         $this->Add(new Route("/notauthorized", "NotAuthorized", [], "Not Authorized", false));
 
-        $this->Add(new Route("/todo/dottoressa", "Todo", ["Amministratore", "Normale"], "Todo Dottoressa", true));
-        $this->Add(new Route("/todo/dottoressa/add", "TodoAdd", ["Amministratore", "Normale"], "Todo add", false));
-        $this->Add(new Route("/todo/dottoressa/delete/:number", "TodoDelete", ["Amministratore", "Normale"], "Todo Delete", false));
-        $this->Add(new Route("/todo/dottoressa/modify/:number", "TodoModify", ["Amministratore", "Normale"], "Todo Modify", false));
-
-        $this->Add(new Route("/todo/collaboratrice", "Todo", ["Amministratore", "Normale"], "Todo Collaboratrice", true));
-        $this->Add(new Route("/todo/collaboratrice/add", "TodoAdd", ["Amministratore", "Normale"], "Todo add", false));
-        $this->Add(new Route("/todo/collaboratrice/delete/:number", "TodoDelete", ["Amministratore", "Normale"], "Todo Delete", false));
-        $this->Add(new Route("/todo/collaboratrice/modify/:number", "TodoModify", ["Amministratore", "Normale"], "Todo Modify", false));
+        $this->Add(new Route("/todo/:string", "Todo", ["Amministratore", "Normale"], "Todo", false));
+        $this->Add(new Route("/todo/:string/add", "TodoAdd", ["Amministratore", "Normale"], "Todo add", false));
+        $this->Add(new Route("/todo/:string/delete/:number", "TodoDelete", ["Amministratore", "Normale"], "Todo Delete", false));
+        $this->Add(new Route("/todo/:string/modify/:number", "TodoModify", ["Amministratore", "Normale"], "Todo Modify", false));
 
         $this->Add(new Route("/utente", "Utente", ["Amministratore"], "Utenti", true));
         $this->Add(new Route("/utente/delete/:number", "UtenteDelete", ["Amministratore"], "Utente delete", false));

@@ -20,7 +20,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
     <div class='row'>
         <div class='col-md-12'>
             <h1>New todo</h1>
-            <form action="/todoadd" method="post">
+            <form action="/todo/<?= $soggetto ?>/add" method="post">
                 <div class='form-group'>
                     <input type="text" class="form-control" name="todo"><br/>
                     <input type="submit" value="Send" class='btn btn-block btn-lg btn-success'>
@@ -51,8 +51,8 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                     <tr>
                         <td class="tdicon"><?= $id ?></td>
                         <td><?= $descrizione ?></td>
-                        <td class="tdicon"><a class="btn btn-warning" href='/todo/modify/<?= $id ?>'><i class='fa fa fa-pencil fa-lg' aria-hidden='true'></i></a></td>
-                        <td class="tdicon"><a class="btn btn-danger" href='/todo/delete/<?= $id ?>'><i class='fa fa fa-trash fa-lg' aria-hidden='true'></i></a></td>
+                        <td class="tdicon"><a class="btn btn-warning" href='/todo/<?= $soggetto ?>/modify/<?= $id ?>'><i class='fa fa fa-pencil fa-lg' aria-hidden='true'></i></a></td>
+                        <td class="tdicon"><a class="btn btn-danger" href='/todo/<?= $soggetto ?>/delete/<?= $id ?>'><i class='fa fa fa-trash fa-lg' aria-hidden='true'></i></a></td>
                     </tr>
                     <?php
                 }

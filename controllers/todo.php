@@ -2,14 +2,20 @@
 
 class Todo extends Controller {
     
-    function __construct() {
-        parent::__construct(get_class());
-    }
-
-    function get() {
-        $todos = TodoEntity::Lista();
-        include("views/todo.php");
-    }
+        function __construct() {
+            parent::__construct(get_class());
+        }
+        
+        function get($soggetto) {
+            if($soggetto == 'dottoressa') {
+                $tabella = "todo_dottoressa";
+            } else {
+                $tabella = "todo_collaboratrice";
+            }
+            $todos = TodoEntity::Lista($tabella);
+            include("views/todo.php");
+        }  
+        
 }
 
 /* -------------------------------------------------
@@ -22,7 +28,7 @@ class TodoAdd extends Controller {
         parent::__construct(get_class());
     }
 
-    function post() {
+    function post($soggetto) {
 
         $errors = [];
 
@@ -32,23 +38,29 @@ class TodoAdd extends Controller {
             $errors[] = 'Todo non passato';
         }
 
+        if($soggetto == 'dottoressa') {
+            $tabella = "todo_dottoressa";
+        } else {
+            $tabella = "todo_collaboratrice";
+        }
+
         if(empty($errors)) {
 
-            if(!TodoEntity::Add($todo)) {
+            if(!TodoEntity::Add($tabella, $todo)) {
                 $errors[] = 'Errore inserimento nella base dati';
             } else {
-                Flashmessage::ADD(Autaut::LOGGATO(), 'todo', 'ok', 'Aggiunto', 'SUCCESS');
+                Flashmessage::ADD(Autaut::LOGGATO(), 'home', 'ok', 'Aggiunto', 'SUCCESS');
             }
         }
 
         if(!empty($errors)) {
             foreach($errors as $testo) {
-                Flashmessage::ADD(Autaut::LOGGATO(), 'todo', 'Attenzione', $testo, 'ALERT');
+                Flashmessage::ADD(Autaut::LOGGATO(), 'home', 'Attenzione', $testo, 'ALERT');
             }
         }
 
         // Rinvia alla pagina
-        header("Location: /todo");
+        header("Location: /");
     }
 }
 
@@ -63,7 +75,7 @@ class TodoDelete extends Controller {
         parent::__construct(get_class());
     }
 
-    function post() {
+    function post($soggetto) {
 
         $errors = [];
 
@@ -73,32 +85,44 @@ class TodoDelete extends Controller {
             $errors[] = 'ID non passato';
         }
 
+        if($soggetto == 'dottoressa') {
+            $tabella = "todo_dottoressa";
+        } else {
+            $tabella = "todo_collaboratrice";
+        }
+
         if(empty($errors)) {
 
-            if(!TodoEntity::DELETE($id)) {
+            if(!TodoEntity::DELETE($tabella, $id)) {
                 $errors[] = 'Errore inserimento nella base dati';
             } else {
-                Flashmessage::ADD(Autaut::LOGGATO(), 'todo', 'ok', 'cancellato', 'SUCCESS');
+                Flashmessage::ADD(Autaut::LOGGATO(), 'home', 'ok', 'cancellato', 'SUCCESS');
             }
         }
 
         if(!empty($errors)) {
             foreach($errors as $testo) {
-                Flashmessage::ADD(Autaut::LOGGATO(), 'todo', 'Attenzione', $testo, 'ALERT');
+                Flashmessage::ADD(Autaut::LOGGATO(), 'home', 'Attenzione', $testo, 'ALERT');
             }
         }
 
         // Rinvia alla pagina
-        header("Location: /todo");
+        header("Location: /");
     }
 
-    function get($id) {
+    function get($soggetto, $id) {
+        
+        if($soggetto == 'dottoressa') {
+            $tabella = "todo_dottoressa";
+        } else {
+            $tabella = "todo_collaboratrice";
+        }
 
-        $todo = TodoEntity::ID($id);
+        $todo = TodoEntity::ID($tabella, $id);
 
         $messaggio = "Attenzione";
         $elemento = "Cancellare #".$todo['id'].": ".Utilita::DB2HTML($todo['descrizione'])." ?";
-        $linkAnnulla = "/todo";
+        $linkAnnulla = "/";
 
         include("views/tododelete.php");
     }
@@ -115,7 +139,7 @@ class TodoModify extends Controller {
         parent::__construct(get_class());
     }
 
-    function post() {
+    function post($soggetto) {
         
         $errors = [];
 
@@ -131,29 +155,41 @@ class TodoModify extends Controller {
             $errors[] = 'Todo non passato';
         }
 
+        if($soggetto == 'dottoressa') {
+            $tabella = "todo_dottoressa";
+        } else {
+            $tabella = "todo_collaboratrice";
+        }
+
         if(empty($errors)) {
 
-            if(!TodoEntity::MODIFY($id, $todo)) {
+            if(!TodoEntity::MODIFY($tabella, $id, $todo)) {
                 $errors[] = 'Errore modifica base dati';
             } else {
-                Flashmessage::ADD(Autaut::LOGGATO(), 'todo', 'ok', 'Modificato', 'SUCCESS');
+                Flashmessage::ADD(Autaut::LOGGATO(), 'home', 'ok', 'Modificato', 'SUCCESS');
             }
         }
 
         if(!empty($errors)) {
             foreach($errors as $testo) {
-                Flashmessage::ADD(Autaut::LOGGATO(), 'todo', 'Attenzione', $testo, 'ALERT');
+                Flashmessage::ADD(Autaut::LOGGATO(), 'home', 'Attenzione', $testo, 'ALERT');
             }
         }
 
         // Rinvia alla pagina
-        header("Location: /todo");
+        header("Location: /");
     }
 
-    function get($id) {
+    function get($soggetto, $id) {
         
-        $todo = TodoEntity::ID($id);
-        $linkAnnulla = "/todo";
+        if($soggetto == 'dottoressa') {
+            $tabella = "todo_dottoressa";
+        } else {
+            $tabella = "todo_collaboratrice";
+        }
+
+        $todo = TodoEntity::ID($tabella, $id);
+        $linkAnnulla = "/";
         include("views/todomodify.php");
     }
 }

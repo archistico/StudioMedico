@@ -1,6 +1,8 @@
 <?php
 
 class Html_default {
+    public $livelli;
+
     public static function HEAD($titolo, $login = false) {
         $html = "
         <!DOCTYPE html>
@@ -13,20 +15,20 @@ class Html_default {
             <title>$titolo</title>
             
             <link rel='icon' href='favicon.ico'>
-            <link rel='stylesheet' href='../../vendor/bootstrap/bootstrap.min.css'>
-            <link rel='stylesheet' href='../../vendor/awesome/css/font-awesome.min.css'>
+            <link rel='stylesheet' href='../../../vendor/bootstrap/bootstrap.min.css'>
+            <link rel='stylesheet' href='../../../vendor/awesome/css/font-awesome.min.css'>
             
-            <link rel='stylesheet' href='../../vendor/bootstrap-datepicker/bootstrap-datepicker3.css'>
+            <link rel='stylesheet' href='../../../vendor/bootstrap-datepicker/bootstrap-datepicker3.css'>
             ";
         echo $html;
 
         if($login) {
-            echo "<link href='../../css/login.css' rel='stylesheet'>";
+            echo "<link href='../../../css/login.css' rel='stylesheet'>";
         }
 
         $html = "    
             <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet'>
-            <link href='../../css/stile.css' rel='stylesheet'>
+            <link href='../../../css/stile.css' rel='stylesheet'>
         </head>
         <body>
         ";
@@ -38,8 +40,6 @@ class Html_default {
         <main role='main' class='container-fluid theme-showcase'>
         ";
         echo $html;
-
-        //echo $_SERVER['REQUEST_URI'].BR;
     }
 
     public static function CLOSECONTAINER() {
@@ -120,32 +120,32 @@ class Html_default {
     public static function SCRIPT($attivi, $datepicker = false, $chartjs = false, $sha512 = false) {
         if($attivi){
             $html = "
-            <script src='../../vendor/jquery/jquery-3.2.1.min.js'></script>
-            <script src='../../vendor/popper/popper.min.js'></script>
-            <script src='../../vendor/bootstrap/bootstrap.min.js'></script>
-            <script src='../../vendor/moment/moment.min.js'></script>
-            <script src='../../vendor/fittext/jquery.fittext.js'></script>
+            <script src='../../../vendor/jquery/jquery-3.2.1.min.js'></script>
+            <script src='../../../vendor/popper/popper.min.js'></script>
+            <script src='../../../vendor/bootstrap/bootstrap.min.js'></script>
+            <script src='../../../vendor/moment/moment.min.js'></script>
+            <script src='../../../vendor/fittext/jquery.fittext.js'></script>
             ";
             echo $html;
         }
         if($datepicker){
             $html = "
-            <script src='../../vendor/bootstrap-datepicker/bootstrap-datepicker.min.js'></script>
-            <script src='../../vendor/bootstrap-datepicker/bootstrap-datepicker.it.min.js'></script>
+            <script src='../../../vendor/bootstrap-datepicker/bootstrap-datepicker.min.js'></script>
+            <script src='../../../vendor/bootstrap-datepicker/bootstrap-datepicker.it.min.js'></script>
             ";
             echo $html;
         }
         if($chartjs){
             $html = "
-            <script src='../../vendor/palette/palette.js'></script>
-            <script src='../../vendor/chartjs/chart.bundle.min.js'></script>
+            <script src='../../../vendor/palette/palette.js'></script>
+            <script src='../../../vendor/chartjs/chart.bundle.min.js'></script>
             ";
             echo $html;
         }
         if($sha512){
             $html = "
-            <script src='../../vendor/sha512/sha512.js'></script>
-            <script src='../../vendor/sha512/form.js'></script>
+            <script src='../../../vendor/sha512/sha512.js'></script>
+            <script src='../../../vendor/sha512/form.js'></script>
             ";
             echo $html;
         }

@@ -147,7 +147,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                             ?>
                             <tr>
                                 <td><?= $descrizione ?></td>
-                                <td class="tdicon"><a class="btn btn-danger btn-sm" href='/todo/delete/<?= $id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></td>
+                                <td class="tdicon"><a class="btn btn-danger btn-sm" href='/todo/dottoressa/delete/<?= $id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></td>
                             </tr>
                             <?php
                         }
@@ -189,7 +189,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                             ?>
                             <tr>
                                 <td><?= $descrizione ?></td>
-                                <td class="tdicon"><a class="btn btn-danger btn-sm" href='/todo/delete/<?= $id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></td>
+                                <td class="tdicon"><a class="btn btn-danger btn-sm" href='/todo/collaboratrice/delete/<?= $id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></td>
                             </tr>
                             <?php
                         }
