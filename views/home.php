@@ -76,68 +76,78 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
 
                     <div class="agenda">
                         <div class="table-responsive">
+                            <table class="table table-condensed table-bordered background-giorno">
+                                <tbody>
+                                <tr>
+                                    <td class="agenda-date" class="active" rowspan="1">
+                                        <div class="dayofmonth">01</div>
+                                        <div class="dayofweek bianco"><strong>Lunedì</strong></div>
+                                        <div class="shortdate">Gennaio, 2018</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="agenda">
+                        <div class="table-responsive">
                             <table class="table table-condensed table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Event</th>
+                                    <th>Orario</th>
+                                    <th>Paziente</th>
+                                    <th>Note</th>
+                                    <th>#</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <!-- Single event in a single day -->
                                 <tr>
-                                    <td class="agenda-date" class="active" rowspan="1">
-                                        <div class="dayofmonth">26</div>
-                                        <div class="dayofweek">Saturday</div>
-                                        <div class="shortdate text-muted">July, 2014</div>
+                                    <td class="agenda-orario">
+                                        8:00-8:15
                                     </td>
-                                    <td class="agenda-time">
-                                        5:30 AM
+                                    <td class="agenda-paziente">
+                                        Rossi Mario
                                     </td>
-                                    <td class="agenda-events">
-                                        <div class="agenda-event">
-                                            Fishing
-                                        </div>
+                                    <td class="agenda-note">
+                                        Vaccino
+                                    </td>
+                                    <td class="agenda-pulsante">
+                                    <a class="btn btn-danger btn-sm" href='/appuntamenti/delete/<?= 1 ?>'><i class='fa fa-trash' aria-hidden='true'></i></a>
                                     </td>
                                 </tr>
 
-                                <!-- Multiple events in a single day (note the rowspan) -->
                                 <tr>
-                                    <td class="agenda-date" class="active" rowspan="3">
-                                        <div class="dayofmonth">24</div>
-                                        <div class="dayofweek">Thursday</div>
-                                        <div class="shortdate text-muted">July, 2014</div>
+                                    <td class="agenda-orario">
+                                        8:00-8:15
                                     </td>
-                                    <td class="agenda-time">
-                                        8:00 - 9:00 AM
+                                    <td class="agenda-paziente">
+                                        Rossi Mario
                                     </td>
-                                    <td class="agenda-events">
-                                        <div class="agenda-event">
-                                            Doctor's Appointment
-                                        </div>
+                                    <td class="agenda-note">
+                                        Vaccino
+                                    </td>
+                                    <td class="agenda-pulsante">
+                                        <a class="btn btn-danger btn-sm" href='/appuntamenti/delete/<?= 1 ?>'><i class='fa fa-trash' aria-hidden='true'></i></a>
                                     </td>
                                 </tr>
+
                                 <tr>
-                                    <td class="agenda-time">
-                                        10:15 AM - 12:00 PM
+                                    <td class="agenda-orario">
+                                        8:00-8:15
                                     </td>
-                                    <td class="agenda-events">
-                                        <div class="agenda-event">
-                                            Meeting with executives
-                                        </div>
+                                    <td class="agenda-paziente">
+                                        Rossi Mario
+                                    </td>
+                                    <td class="agenda-note">
+                                        Vaccino
+                                    </td>
+                                    <td class="agenda-pulsante">
+                                        <a class="btn btn-danger btn-sm" href='/appuntamenti/delete/<?= 1 ?>'><i class='fa fa-trash' aria-hidden='true'></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="agenda-time">
-                                        7:00 - 9:00 PM
-                                    </td>
-                                    <td class="agenda-events">
-                                        <div class="agenda-event">
-                                            Aria's dance recital
-                                        </div>
-                                    </td>
-                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
