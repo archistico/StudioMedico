@@ -20,8 +20,10 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
 
     <div class="row align-items-start">
         <div class="col-md-8">
-            <h1>Appuntamenti</h1>
 
+            <div class="notice notice-warning">
+                <h3>Appuntamenti</h3>
+            </div>
 
             <div class="row align-items-start">
                 <div class="col-md-12">
@@ -67,7 +69,11 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
 
             <div class="row align-items-start paddingTop20">
                 <div class="col-12">
-                    <h2>Lista</h2>
+
+                    <div class="notice notice-warning">
+                        <h3>Lista</h3>
+                    </div>
+
                     <div class="agenda">
                         <div class="table-responsive">
                             <table class="table table-condensed table-bordered">
@@ -151,7 +157,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
             <div class="row align-items-start">
                 <div class="col-12">
                     <div class="notice notice-info">
-                        <strong>Dottoressa</strong>
+                        <h3>Dottoressa</h3>
                         <form action="/todo/dottoressa/add" method="post">
                             <div class='form-group'>
                                 <input type="text" class="form-control" name="todo" placeholder="Scrivi qui il compito"><br/>
@@ -193,7 +199,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
             <div class="row align-items-start">
                 <div class="col-12">
                     <div class="notice notice-info">
-                        <strong>Collaboratrice</strong>
+                        <h3>Collaboratrice</h3>
                         <form action="/todo/collaboratrice/add" method="post">
                             <div class='form-group'>
                                 <input type="text" class="form-control" name="todo" placeholder="Scrivi qui il compito"><br/>
