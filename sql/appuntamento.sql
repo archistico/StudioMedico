@@ -4,12 +4,13 @@ CREATE TABLE `app` (
   `data` date NOT NULL,
   `fkorario` int(11) NOT NULL,
   `nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '-'
+  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '-',
+  `cancellato` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `app` (`idapp`, `data`, `fkorario`, `nome`, `note`) VALUES
-(2, '2017-03-15', 103, 'Pippo', ''),
-(3, '2017-03-15', 105, 'Pluto', '');
+INSERT INTO `app` (`idapp`, `data`, `fkorario`, `nome`, `note`, `cancellato`) VALUES
+(1, '2017-12-15', 103, 'Pippo', '', 0),
+(2, '2017-12-15', 105, 'Pluto', '', 0);
 
 ALTER TABLE `app`
   ADD PRIMARY KEY (`idapp`);

@@ -12,6 +12,7 @@ Utilita::PARAMETRI_INIZIALI();
 // Caricamento controller
 require("controllers/controller.php");
 require("controllers/home.php");
+require("controllers/orario.php");
 require("controllers/todo.php");
 require("controllers/utente.php");
 require("controllers/login.php");
@@ -21,6 +22,7 @@ require("controllers/notauthorized.php");
 // Entities
 require("entities/todo.php");
 require("entities/utente.php");
+require("entities/orario.php");
 
 // Database e route
 require("lib/mysql.php");

@@ -121,3 +121,7 @@ body {
 .agenda .agenda-paziente {  }
 .agenda .agenda-note {  }
 .agenda .agenda-pulsante { width: 40px; }
+
+.selectNonAttivo {
+  color: red;
+}

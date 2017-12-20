@@ -198,6 +198,7 @@ class Routes {
         $this->routes = null;
 
         $this->Add(new Route("/", "Home", ["Amministratore", "Normale", "Visitatore"], "Home", true));
+        $this->Add(new Route("/orario", "Orario", ["Amministratore", "Normale"], "Orario", false));
         $this->Add(new Route("/notauthorized", "NotAuthorized", [], "Not Authorized", false));
 
         $this->Add(new Route("/todo/:string", "Todo", ["Amministratore", "Normale"], "Todo", false));

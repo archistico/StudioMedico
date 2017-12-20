@@ -25,6 +25,10 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                 <h3>Appuntamenti</h3>
             </div>
 
+            <pre>
+                <?php //var_dump($orari); ?>
+            </pre>
+
             <div class="row align-items-start">
                 <div class="col-md-12">
                     <h2>Aggiungi</h2>
@@ -40,9 +44,9 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                             </div>
 
                             <div class="form-group">
-                                <label for="orarioselezionato">Orario</label>
-                                <select class="form-control" id="orarioselezionato">
-                                    <option>8:00 - 8:15</option>
+                                <label for="selectorario">Orario</label>
+                                <select class="form-control" id="selectorario">
+                                    
                                 </select>
                             </div>
 
@@ -268,6 +272,40 @@ Html_default::SCRIPT(True, True);
 ?>
 
     <script>
+        moment.locale('it');
+                        
+        function orario() {
+          $.get("/orario", function(a) {
+            orari = a.orari;
+            $("#selectorario").empty();
+            selected = false;
+
+            var x = document.getElementById("selectorario");
+            giornoselezionato = $('#dataappuntamento').datepicker('getFormattedDate');
+            giornosettimana = moment(giornoselezionato,'DD/MM/YYYY').format('ddd');
+
+            Object.values(orari).forEach(function(ora) {
+
+                // Se giorno settimana uguale a giorno settimana dell'orario allora aggiungi
+                if(giornosettimana == ora.giornosettimana) {
+                    var option = document.createElement("option");
+                    option.text = ora.ora + " : ";
+                    option.value = ora.idorario
+                    
+                    // seleziona il primo attivo, libero
+                    if ((ora.attivo==1) && (selected == false)) {
+                        option.setAttribute('selected','selected');
+                        selected = true;
+                    }
+                    if(ora.attivo==0) {
+                        option.classList.add('selectNonAttivo');
+                    }
+                    x.add(option);
+                }                
+
+            });
+          });
+        }
 
         $('#dataappuntamento').datepicker({
             format: "dd/mm/yyyy",
@@ -282,11 +320,14 @@ Html_default::SCRIPT(True, True);
             $('#dataselezionatatesto').val(
                 $('#dataappuntamento').datepicker('getFormattedDate')
             );
+            orario();
         });
 
         $('#dataselezionatatesto').val(
             moment(Date.now()).format('DD/MM/YYYY')
         );
+        orario();
+
     </script>
 
 

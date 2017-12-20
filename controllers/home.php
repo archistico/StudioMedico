@@ -6,6 +6,7 @@ class Home extends Controller {
     }
 
     function get() {
+        
         $todosDottoressa = TodoEntity::Lista('todo_dottoressa');
         $todosCollaboratrice = TodoEntity::Lista('todo_collaboratrice');
         include("views/home.php");
