@@ -275,36 +275,46 @@ Html_default::SCRIPT(True, True);
         moment.locale('it');
                         
         function orario() {
-          $.get("/orario", function(a) {
-            orari = a.orari;
-            $("#selectorario").empty();
-            selected = false;
-
             var x = document.getElementById("selectorario");
-            giornoselezionato = $('#dataappuntamento').datepicker('getFormattedDate');
-            giornosettimana = moment(giornoselezionato,'DD/MM/YYYY').format('ddd');
+            var giornoselezionato = $('#dataappuntamento').datepicker('getFormattedDate');
+            var giornosettimana = moment(giornoselezionato,'DD/MM/YYYY').format('ddd');
+            
+            if(!giornoselezionato) {
+                giornoselezionato = moment(Date.now()).format('DD/MM/YYYY');
+                giornosettimana = moment(giornoselezionato,'DD/MM/YYYY').format('ddd');
+            }
 
-            Object.values(orari).forEach(function(ora) {
+            url = "/orariodata/" + moment(giornoselezionato,'DD/MM/YYYY').format('YYYYMMDD');            
+            
+            $.get(url, function(a) {
+                orari = a.orari;
+                appuntamenti = a.appuntamenti;
 
-                // Se giorno settimana uguale a giorno settimana dell'orario allora aggiungi
-                if(giornosettimana == ora.giornosettimana) {
-                    var option = document.createElement("option");
-                    option.text = ora.ora + " : ";
-                    option.value = ora.idorario
-                    
-                    // seleziona il primo attivo, libero
-                    if ((ora.attivo==1) && (selected == false)) {
-                        option.setAttribute('selected','selected');
-                        selected = true;
-                    }
-                    if(ora.attivo==0) {
-                        option.classList.add('selectNonAttivo');
-                    }
-                    x.add(option);
-                }                
+                $("#selectorario").empty();
+                selected = false;
 
+                Object.values(orari).forEach(function(ora) {
+
+                    // ciclo appuntamenti per vedere se quel giorno ho un app a quell'ora
+                                        
+                    // Se giorno settimana uguale a giorno settimana dell'orario allora aggiungi
+                    if(giornosettimana == ora.giornosettimana) {
+                        var option = document.createElement("option");
+                        option.text = ora.ora + " : ";
+                        option.value = ora.idorario
+
+                        // seleziona il primo attivo, libero
+                        if ((ora.attivo==1) && (selected == false)) {
+                            option.setAttribute('selected','selected');
+                            selected = true;
+                        }
+                        if(ora.attivo==0) {
+                            option.classList.add('selectNonAttivo');
+                        }
+                        x.add(option);
+                    }                
+                });
             });
-          });
         }
 
         $('#dataappuntamento').datepicker({

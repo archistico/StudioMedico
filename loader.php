@@ -23,6 +23,7 @@ require("controllers/notauthorized.php");
 require("entities/todo.php");
 require("entities/utente.php");
 require("entities/orario.php");
+require("entities/appuntamento.php");
 
 // Database e route
 require("lib/mysql.php");

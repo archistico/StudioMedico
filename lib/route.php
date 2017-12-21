@@ -199,7 +199,7 @@ class Routes {
 
         $this->Add(new Route("/", "Home", ["Amministratore", "Normale", "Visitatore"], "Home", true));
         $this->Add(new Route("/orario", "Orario", ["Amministratore", "Normale"], "Orario", false));
-        $this->Add(new Route("/notauthorized", "NotAuthorized", [], "Not Authorized", false));
+        $this->Add(new Route("/orariodata/:number", "OrarioData", ["Amministratore", "Normale"], "Orario", false));
 
         $this->Add(new Route("/todo/:string", "Todo", ["Amministratore", "Normale"], "Todo", false));
         $this->Add(new Route("/todo/:string/add", "TodoAdd", ["Amministratore", "Normale"], "Todo add", false));
@@ -212,6 +212,7 @@ class Routes {
 
         $this->Add(new Route("/login", "Login", [], "Login", false));
         $this->Add(new Route("/logout", "Logout", ["Amministratore", "Normale", "Visitatore"], "Logout", true));
+        $this->Add(new Route("/notauthorized", "NotAuthorized", [], "Not Authorized", false));
 
         return $this;
     }
