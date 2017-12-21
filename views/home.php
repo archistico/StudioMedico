@@ -25,10 +25,6 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                 <h3>Appuntamenti</h3>
             </div>
 
-            <pre>
-                <?php //var_dump($orari); ?>
-            </pre>
-
             <div class="row align-items-start">
                 <div class="col-md-12">
                     <h2>Aggiungi</h2>
@@ -46,7 +42,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                             <div class="form-group">
                                 <label for="selectorario">Orario</label>
                                 <select class="form-control" id="selectorario">
-                                    
+
                                 </select>
                             </div>
 
@@ -118,7 +114,7 @@ Html_default::SHOW_NOTICES(Flashmessage::READ(Autaut::LOGGATO(), File::FILENAME(
                                         Vaccino
                                     </td>
                                     <td class="agenda-pulsante">
-                                    <a class="btn btn-danger btn-sm" href='/appuntamenti/delete/<?= 1 ?>'><i class='fa fa-trash' aria-hidden='true'></i></a>
+                                        <a class="btn btn-danger btn-sm" href='/appuntamenti/delete/<?= 1 ?>'><i class='fa fa-trash' aria-hidden='true'></i></a>
                                     </td>
                                 </tr>
 
@@ -273,19 +269,30 @@ Html_default::SCRIPT(True, True);
 
     <script>
         moment.locale('it');
-                        
+
+        function CercaAppuntamento(appuntamenti, idorario) {
+            if(appuntamenti) {
+                var apps = Object.values(appuntamenti);
+                for(var i = 0; i<apps.length ; i++) {
+                    if(apps[i].fkorario == idorario) {
+                        return apps[i].nome;
+                    }
+                }
+            }
+        }
+
         function orario() {
             var x = document.getElementById("selectorario");
             var giornoselezionato = $('#dataappuntamento').datepicker('getFormattedDate');
             var giornosettimana = moment(giornoselezionato,'DD/MM/YYYY').format('ddd');
-            
+
             if(!giornoselezionato) {
                 giornoselezionato = moment(Date.now()).format('DD/MM/YYYY');
                 giornosettimana = moment(giornoselezionato,'DD/MM/YYYY').format('ddd');
             }
 
-            url = "/orariodata/" + moment(giornoselezionato,'DD/MM/YYYY').format('YYYYMMDD');            
-            
+            url = "/orariodata/" + moment(giornoselezionato,'DD/MM/YYYY').format('YYYYMMDD');
+
             $.get(url, function(a) {
                 orari = a.orari;
                 appuntamenti = a.appuntamenti;
@@ -294,25 +301,23 @@ Html_default::SCRIPT(True, True);
                 selected = false;
 
                 Object.values(orari).forEach(function(ora) {
-                                        
+
                     // Se giorno settimana uguale a giorno settimana dell'orario allora aggiungi
                     if(giornosettimana == ora.giornosettimana) {
                         var option = document.createElement("option");
 
                         if(appuntamenti) {
-                            Object.values(appuntamenti).forEach(function(appuntamento) { 
-                                // ciclo appuntamenti per vedere se quel giorno ho un app a quell'ora
-                                if(appuntamento.fkorario == ora.idorario) {
-                                    console.log(appuntamento.nome);
-                                    option.text = ora.ora + " : " + appuntamento.nome;
-                                } else {
-                                    option.text = ora.ora;
-                                }
-                            });               
+                            var nome = CercaAppuntamento(appuntamenti, ora.idorario);
+
+                            if(nome) {
+                                option.text = ora.ora + " : " + nome;
+                            } else {
+                                option.text = ora.ora;
+                            }
                         } else {
                             option.text = ora.ora;
                         }
-                        
+
                         option.value = ora.idorario
 
                         // seleziona il primo attivo, libero
@@ -324,7 +329,7 @@ Html_default::SCRIPT(True, True);
                             option.classList.add('selectNonAttivo');
                         }
                         x.add(option);
-                    }                
+                    }
                 });
             });
         }
