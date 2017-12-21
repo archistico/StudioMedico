@@ -294,13 +294,25 @@ Html_default::SCRIPT(True, True);
                 selected = false;
 
                 Object.values(orari).forEach(function(ora) {
-
-                    // ciclo appuntamenti per vedere se quel giorno ho un app a quell'ora
                                         
                     // Se giorno settimana uguale a giorno settimana dell'orario allora aggiungi
                     if(giornosettimana == ora.giornosettimana) {
                         var option = document.createElement("option");
-                        option.text = ora.ora + " : ";
+
+                        if(appuntamenti) {
+                            Object.values(appuntamenti).forEach(function(appuntamento) { 
+                                // ciclo appuntamenti per vedere se quel giorno ho un app a quell'ora
+                                if(appuntamento.fkorario == ora.idorario) {
+                                    console.log(appuntamento.nome);
+                                    option.text = ora.ora + " : " + appuntamento.nome;
+                                } else {
+                                    option.text = ora.ora;
+                                }
+                            });               
+                        } else {
+                            option.text = ora.ora;
+                        }
+                        
                         option.value = ora.idorario
 
                         // seleziona il primo attivo, libero
